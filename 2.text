@@ -1,0 +1,59 @@
+/* Realice un algoritmo o pseudo-código que explique cómo resolver la siguiente situación: En un vector de enteros, 
+no necesariamente ordenado, calcule el número de veces que aparece el máximo y el mínimo de sus elementos en una sola pasada 
+(es decir recorriendo el vector una sola vez).
+*/
+
+let d = [2, 7, 2, 3, 7, 9, 2, 9]
+
+let max = 0
+let min = 0
+
+let cantMax = 0
+let cantMin = 0
+
+for (let i = 0; i < d.length; i++) {
+
+    if (i == 0) {
+        max = d[i]
+        min = d[i]
+    } else {
+        max = d[i] > max ? d[i] : max
+        min = d[i] < min ? d[i] : min
+    }
+
+}
+
+cantMax = d.reduce((a, v) => v == max ? a + 1 : a, 0)
+cantMin = d.reduce((a, v) => v == min ? a + 1 : a, 0)
+// cantMax = d.count()
+
+
+console.log(max + ' => ' + cantMax);
+console.log(min + ' => ' + cantMin);
+// console.log(d);
+// console.log(Math.max(parseInt(d.reduce((a, v) => a + ', ' + v, ''))));
+// console.log(Math.min()));
+
+
+/*
+Explique cómo resolvería el siguiente problema basado en una lógica de desarrollo: 
+Existe una cola de mensajes que es usada para priorizar la ejecución de procesos; 
+existiendo dos tipos de procesos, el primero dura 20 segundos y el segundo dura 1 minuto.  
+Cómo haría para optimizar la atención de cada proceso y de manera que el tiempo de espera sea inferior a 2 minutos?
+
+
+
+*/
+
+let procesos = [
+    { name: "first", time: 20, procesos: 6 },
+    { name: "second", time: 60, procesos: 2 }
+]
+let colaMsg = 1
+
+/*
+desviaría todo al proceso 1, sin embargo a la cola para priorizar procesos le desviaría más el proceso de 1 minuto para agilizar todo, 
+esto debido a que si el proceso si o si dura 1 minuto, no podemos cortar este tiempo
+hay que disponer de más hilos o ejecuciones simultáneas para abastecer la demanda
+*/
+
