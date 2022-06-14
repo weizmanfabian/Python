@@ -1,4 +1,4 @@
-'''
+/*
 ArpaLlanera Hero Pro
 
 James Hammett y Kirk Hetfield ya están en Colombia, y su juego ArpaLlanera Hero ha sido todo un éxito. Sin embargo, el juego se les está haciendo un poco predecible y repetitivo, así que deciden consultar a Cliff Newsted y a Lars Trujillo por alguna idea innovadora para sacar la versión Pro del video juego. Éstos deciden sentarse a estudiar escalas y entrenar el oído musical, y se les ocurre una variación del juego para hacerlo más entretenido.
@@ -25,49 +25,25 @@ E D E D C E B E A E A E G E G E F E
 
 5 1 2 1 2 2 1 2 1 1 1 1 1 1 1 1 1 1
 
-'''
+*/
+const entrada = "E,E,e,E,E,d,E,E,D,c,C,E,E,B,E,E,a,E,A,E,g,E,G,E,f,E"
+const newFunctionJson = async (notas) => {
+    let output = []
 
-from collections import OrderedDict
-from timeit import repeat
-
-entrada = str(input(''))
-
-# formateo la entrada ['E', 'E', 'e', 'E', 'E', 'd', 'E', 'E', 'D', 'c', 'C', 'E', 'E', 'B', 'E', 'E', 'a', 'E', 'A', 'E', 'g', 'E', 'G', 'E', 'f', 'E']
-entradaFormateada = entrada.split(',')
-# print(entradaFormateada)
-
-# convierto la entrada a mayusculas recorriendo con la función map y la funcion lambda. La combierto a list para que se deje acceder por el indice
-entradaUpperCase = list(map(lambda x: x.upper(), entradaFormateada))
-# verifico que todas las letras esten es mayusculas
-print(entradaUpperCase)
-
-# hago un select disctinc de las letras del contenido del array convertido a mayuscula y las agrego a la data
-# data = list(OrderedDict.fromkeys(entradaUpperCase))
-
-listaTemporal = []
-contadorDiferentes = 0
-
-for x in range(len(entradaUpperCase)):
-    if x > 0:
-        # print(listaTemporal[contadorDiferentes-1][0])
-        if listaTemporal[contadorDiferentes-1][0] == entradaUpperCase[x]:
-            # print(listaTemporal[contadorDiferentes-1][1])
-            listaTemporal[contadorDiferentes -
-                          1][1] = listaTemporal[contadorDiferentes-1][1] + 1
-        else:
-            #print("no es =")
-            listaTemporal.append([entradaUpperCase[x], 1])
-            contadorDiferentes += 1
-    else:
-        listaTemporal.append([entradaUpperCase[x], 1])
-        contadorDiferentes += 1
-
-listaNotasMusicales = ''
-listaCantidadNotasMusicales = ''
-
-for x, y in listaTemporal:
-    listaNotasMusicales += ' ' + x
-    listaCantidadNotasMusicales += ' ' + str(y)
-
-print(listaNotasMusicales)
-print(listaCantidadNotasMusicales)
+    const inputFormat = await notas.split(',')
+    for (let nota of inputFormat) {
+        let lastNote = output ? output[output.length - 1] : ''
+        if (lastNote) {
+            if (lastNote.nota == nota.toUpperCase()) {
+                lastNote.count = lastNote.count + 1
+            } else {
+                output.push({ nota: nota.toUpperCase(), count: 1 })
+            }
+        } else {
+            output.push({ nota: nota.toUpperCase(), count: 1 })
+        }
+    }
+    console.log(output.reduce((acc, v) => acc + ' ' + v.nota, ''));
+    console.log(output.reduce((acc, v) => acc + ' ' + v.count, ''));
+}
+newFunctionJson(entrada)
