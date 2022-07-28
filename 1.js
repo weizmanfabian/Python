@@ -1,29 +1,47 @@
 
 
 // Realice un algoritmo o pseudo-código que permita ordenar de mayor a menor, cuatro números ingresados en cualquier orden. (no usar sort)
-let data = [1, 7, 2, 3]
+let data = [9, 7, 1, 5]
 
-let newData = []
-let mayor = 0
-for (let i = 0; i < data.length; i++) {
-    let mayorInterno = 0
-    for (let y = 0; y < data.length; y++) {
-        if (mayorInterno < data[y]) {
+const newData = data.reduce((accEx, numEx) => {
+    let mayor;
+    const majorInterno = data.reduce((majorIn, numIn) => {
+        if (mayorInterno < numIn) {
             if (newData.length == 0) {
-                mayor = data[y]
-                mayorInterno = data[y]
+                mayor = numIn
+                majorIn = numIn
                 continue
             }
-            if (data[y] < mayor) {
-                mayorInterno = data[y]
+            if (numIn < mayor) {
+                mayorInterno = numIn
             }
         }
-        if (data[y] == mayor) {
+        if (numIn == mayor) {
             continue
         }
-    }
-    newData.push(mayorInterno)
-    mayor = mayorInterno
-}
-
+        return numIn
+    }, mayor)
+    return [...accEx, majorInterno]
+}, [])
 console.log(newData);
+// for (let numEx of data) {
+//     let mayorInterno
+//     for (let numIn of data) {
+//         if (mayorInterno < numIn) {
+//             if (newData.length == 0) {
+//                 mayor = numIn
+//                 mayorInterno = numIn
+//                 continue
+//             }
+//             if (numIn < mayor) {
+//                 mayorInterno = numIn
+//             }
+//         }
+//         if (numIn == mayor) {
+//             continue
+//         }
+//     }
+//     newData.push(mayorInterno)
+//     mayor = mayorInterno
+// }
+// console.log(newData);

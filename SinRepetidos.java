@@ -17,7 +17,6 @@ public class SinRepetidos {
    * @param args the command line arguments
    */
   public static void main(String[] args) {
-    //TODO code application logic here
     String text = "HOla mundo, hola yo soy el que soy, soy Weizman";
     wordRepetitions(text);
   }
